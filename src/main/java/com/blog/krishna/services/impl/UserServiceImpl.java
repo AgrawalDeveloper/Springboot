@@ -73,6 +73,7 @@ public class UserServiceImpl implements UserServices {
 //	 user.setEmail(userDto.getEmail());
 //	 user.setPassowrd(userDto.getPassowrd());
 //	 user.setAbout(userDto.getAbout());
+//	 return user;
 	}
 	
 	private UserDto userToDto(User user)
@@ -83,7 +84,7 @@ public class UserServiceImpl implements UserServices {
 //	 userDto.setEmail(user.getEmail());
 //	 userDto.setPassowrd(user.getPassowrd());
 //	 userDto.setAbout(user.getAbout());
-//	 
+//     return userDto;
 	 return this.modelMapper.map(user, UserDto.class);
 	}
 

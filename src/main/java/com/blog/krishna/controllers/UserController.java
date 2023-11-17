@@ -1,7 +1,8 @@
 package com.blog.krishna.controllers;
 
 import java.util.List;
-import java.util.Map;
+
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -27,14 +28,14 @@ public class UserController {
 	private UserServices userService;
 	
 	@PostMapping("/")
-	public ResponseEntity<UserDto> createUser(@RequestBody UserDto userDto)
+	public ResponseEntity<UserDto> createUser(@Valid @RequestBody UserDto userDto)
 	{
 		UserDto createData=this.userService.createUser(userDto);
 		return new ResponseEntity<>(createData,HttpStatus.CREATED);
 	}
 	
 	@PutMapping("/{userId}")
-	public ResponseEntity<UserDto> updateUser(@RequestBody UserDto userDto,@PathVariable int userId)
+	public ResponseEntity<UserDto> updateUser(@Valid @RequestBody UserDto userDto,@PathVariable int userId)
 	{
 		UserDto updateData=this.userService.updateUser(userDto, userId);
 		return new ResponseEntity<>(updateData,HttpStatus.ACCEPTED);

@@ -10,7 +10,6 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -19,24 +18,27 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Entity
-@Table(name="Users")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class User {
+@Entity
+@Table(name="Categories")
+
+public class Category {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Integer id;
-	@Column(name="user_name",nullable=false,length=100)
-	private String name;
-	private String email;
-	private String passowrd;
-	private String about;
+	private Integer categoryId;
+	@Column(name="title",nullable=false,length=100)
+	private String categoryTitle;
 	
-	@OneToMany(mappedBy="user",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+	@Column(name="Description")
+	private String categoryDescription;
+	
+	@OneToMany(mappedBy="category",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
 	private List<Post> posts=new ArrayList<>();
-
+	
+	
 }
+ 
