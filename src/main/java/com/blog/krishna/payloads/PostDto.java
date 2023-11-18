@@ -12,10 +12,10 @@ import lombok.Setter;
 @AllArgsConstructor
 public class PostDto {
 
+	private String postId;
 	
 	private String title;
-	
-	
+		
 	private String content;
 	
 	private String imageName;

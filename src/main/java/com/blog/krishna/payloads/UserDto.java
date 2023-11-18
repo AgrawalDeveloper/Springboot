@@ -3,11 +3,6 @@ package com.blog.krishna.payloads;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
-
-import org.springframework.web.bind.annotation.Mapping;
-
-import com.blog.krishna.entities.Post;
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
