@@ -3,6 +3,7 @@ package com.blog.krishna.services;
 import java.util.List;
 
 import com.blog.krishna.payloads.PostDto;
+import com.blog.krishna.payloads.PostResponse;
 
 public interface PostServices 
 {
@@ -12,7 +13,7 @@ public interface PostServices
 	
 	List<PostDto> getPostByUser(Integer userId);
 	
-	List<PostDto>  getAllPosts(Integer pageNumber, Integer pageSize);
+	PostResponse  getAllPosts(Integer pageNumber, Integer pageSize);
 	
 	PostDto getPostById(Integer postId);
 	

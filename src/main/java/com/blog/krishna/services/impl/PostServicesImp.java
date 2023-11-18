@@ -3,6 +3,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.naming.ldap.PagedResultsResponseControl;
+
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.*;
@@ -13,6 +15,7 @@ import com.blog.krishna.entities.Post;
 import com.blog.krishna.entities.User;
 import com.blog.krishna.exceptions.ResourceNotFoundException;
 import com.blog.krishna.payloads.PostDto;
+import com.blog.krishna.payloads.PostResponse;
 import com.blog.krishna.resposities.CategoryRepo;
 import com.blog.krishna.resposities.PostRepo;
 import com.blog.krishna.resposities.UserRepo;
@@ -64,12 +67,22 @@ public class PostServicesImp implements PostServices {
 	}
 
 	@Override
-	public List<PostDto> getAllPosts(Integer pageNumber,Integer pageSize) {
+	public PostResponse getAllPosts(Integer pageNumber,Integer pageSize) {
 		
 	    Pageable p= PageRequest.of(pageNumber, pageSize);
 		Page<Post> pagePost=this.postRepo.findAll(p);
 		List<Post> posts= pagePost.getContent();
-		return posts.stream().map((post)-> this.modelMapper.map(post, PostDto.class)).collect(Collectors.toList());
+		
+		List<PostDto> postDto=posts.stream().map((post)-> this.modelMapper.map(post, PostDto.class)).collect(Collectors.toList());
+		PostResponse postResponse=new PostResponse();
+		postResponse.setContent(postDto);
+		postResponse.setPageNumber(pagePost.getNumber());
+		postResponse.setPageSize(pagePost.getSize());
+		postResponse.setTotalElements(pagePost.getTotalElements());
+		postResponse.setTotalPages(pagePost.getTotalPages());
+		postResponse.setLastPage(pagePost.isLast());
+		
+		return postResponse;
 	}
 
 	@Override
