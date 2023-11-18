@@ -13,7 +13,7 @@ public interface PostServices
 	
 	List<PostDto> getPostByUser(Integer userId);
 	
-	PostResponse  getAllPosts(Integer pageNumber, Integer pageSize);
+	PostResponse  getAllPosts(Integer pageNumber, Integer pageSize,String sortBy,String sortDir);
 	
 	PostDto getPostById(Integer postId);
 	
