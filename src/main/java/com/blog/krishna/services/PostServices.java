@@ -21,6 +21,6 @@ public interface PostServices
 	
 	PostDto updatePost(PostDto postDto, Integer postId);
 	
-	
+	List<PostDto> searchPosts (String keyword);
 	
 }

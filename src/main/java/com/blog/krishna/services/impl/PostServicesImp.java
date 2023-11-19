@@ -2,9 +2,6 @@ package com.blog.krishna.services.impl;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
-
-import javax.naming.ldap.PagedResultsResponseControl;
-
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.*;
@@ -108,6 +105,13 @@ public class PostServicesImp implements PostServices {
 		post.setImageName(postDto.getImageName());
 		Post updatedPost=this.postRepo.save(post);
 		return this.modelMapper.map(updatedPost, PostDto.class);
+	}
+
+	@Override
+	public List<PostDto> searchPosts(String keyword) {
+		List<Post> posts=this.postRepo.findByTitleContaining(keyword);
+		return posts.stream().map((post)->this.modelMapper.map(post, PostDto.class)).collect(Collectors.toList());
+		
 	}
 
 	
